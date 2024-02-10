@@ -160,11 +160,11 @@ body {
 }
 
 .delete:hover {
-  background-color: darkred;
+  background-color: #8b0000;
 }
 
 .delete:active {
-  background-color: crimson;
+  background-color: #dc143c;
 }
 
 
