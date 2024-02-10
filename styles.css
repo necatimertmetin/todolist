@@ -1,0 +1,86 @@
+.listItem{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background-color: #eee;
+  margin: 10px;
+}
+
+.delete {
+  background-color: red;
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Geçiş efekti ekle */
+}
+
+.delete:hover {
+  background-color: darkred;
+}
+
+.delete:active {
+  background-color: crimson;
+}
+
+.sort-buttons-container{
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.sort {
+  cursor: pointer;
+  background-color: #888;
+  transform: rotate(90deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+  flex: 1;
+  transition: background-color 0.3s; /* Geçiş efekti ekle */
+  color: #fff;
+}
+
+.sort:hover {
+  background-color: #666; /* Hover durumunda arkaplan rengini değiştir */
+}
+
+.sort:active {
+  background-color: #444; /* Tıklama anında arkaplan rengini değiştir */
+}
+
+
+.completed{
+  text-decoration: line-through;
+}
+
+.check{
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+
+.input-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 16px;
+  gap: 10px;
+  padding: 10px;
+}
+
+.input{
+  font-size: 24px;
+}
+.add-button{
+  font-size: 24px;
+  cursor: pointer;
+}
