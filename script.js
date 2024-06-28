@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let booleanValue = false;
 
     const addItem = (inputtedTitle) => {
+        if (inputtedTitle.trim() === '') return; // Prevent adding empty items
         const newItem = {
             id: itemList.length + 1,
             title: inputtedTitle,
             completed: false
         };
         itemList.push(newItem);
+        input = ''; // Clear input after adding item
         saveToLocalStorage();
         render();
     };
@@ -61,6 +63,12 @@ document.addEventListener('DOMContentLoaded', function () {
         inputField.addEventListener('input', function (event) {
             input = event.target.value;
         });
+        inputField.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                addItem(input);
+                inputField.focus(); // Keep the input field focused
+            }
+        });
 
         const addButton = document.createElement('button');
         addButton.id = 'add-button';
@@ -68,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         addButton.textContent = 'Save';
         addButton.addEventListener('click', function () {
             addItem(input);
-            input = '';
+            inputField.focus(); // Keep the input field focused
         });
 
         const inputContainerDiv = document.createElement('div');
@@ -104,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 saveToLocalStorage();
             });
 
-
             sortButtonsContainerDiv.appendChild(ascButton);
             sortButtonsContainerDiv.appendChild(descButton);
 
@@ -139,22 +146,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
             appDiv.appendChild(listItemDiv);
         });
+
+        // Ensure the input field is focused after rendering
+        const inputElement = document.getElementById('input');
+        if (inputElement) {
+            inputElement.focus();
+        }
     };
 
-
-    
     const saveToLocalStorage = () => {
         localStorage.setItem('itemList', JSON.stringify(itemList));
     };
 
-    // Sayfa yüklendiğinde localStorage'dan verileri al
+    // Retrieve data from localStorage when the page loads
     const storedItemList = JSON.parse(localStorage.getItem('itemList'));
     if (storedItemList) {
         itemList.push(...storedItemList);
         render();
     }
 
-    // Sayfa yüklendiğinde booleanValue true olarak ayarlanıyor
+    // Set booleanValue to true when the page loads
     booleanValue = true;
 
     render();
